@@ -39,7 +39,7 @@ function TeacherForm(){
 
     function setScheduleItemValue(position: number, field: string, value: string){
         const updatedScheduleItems = scheduleItems.map((scheduleItem, index) =>{
-            if(index == position){
+            if(index === position){
                 return {...scheduleItem, [field]: value};
             }
 
@@ -61,10 +61,10 @@ function TeacherForm(){
                 schedule: scheduleItems
             }
         ).then(() => {
-            swal('Aula cadastrada','Cadastro realizado com sucesso!', 'success');
+            swal('Cadastrado','Cadastro realizado com sucesso!', 'success');
             history.push('/')
         }).catch(() =>{
-            swal('Ocorreu um erro','Erro no cadastro!', 'error');
+            swal('Ocorreu um erro','Erro ao cadastrar dados!', 'error');
         })
     }
 
@@ -84,6 +84,7 @@ function TeacherForm(){
                             label="Nome completo"
                             value={name}
                             onChange={(e) => {setName(e.target.value)}}
+                            autoComplete="off"
                         />
 
                         <Input
@@ -91,12 +92,16 @@ function TeacherForm(){
                             label="Avatar"
                             value={avatar}
                             onChange={(e) => {setAvatar(e.target.value)}}
+                            autoComplete="off"
+
                         />
                         <Input
                             name="whatsapp"
                             label="Whatsapp"
                             value={whatsapp}
                             onChange={(e) => {setWhatsapp(e.target.value)}}
+                            autoComplete="off"
+                            maxLength={13}
                         />
                         <Textarea
                             name="bio"
